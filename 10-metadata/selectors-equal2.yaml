@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: nginx-rc
+    labels:
+        app: frontend-server
+    namespace: default
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: nginx-server
+    template:
+        metadata:
+            name: nginx-poc
+            labels:
+                app: nginx-server
+        spec:
+            containers:
+                - name: nginx-containers
+                  image: nginx:stable-alpine3.21-perl
+                  ports:
+                      - containerPort: 80
