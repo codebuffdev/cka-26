@@ -1,0 +1,36 @@
+# kind-dev-cluster.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+# ⭐ Custom cluster name (THIS fixes confusing prefixes)
+name: dev
+
+nodes:
+  # Control plane node
+  - role: control-plane
+    image: kindest/node:v1.31.4@sha256:2cb39f7295fe7eafee0842b1052a599a4fb0f8bcf3f83d96c7f4864c357c6c30
+
+    # # ⭐ Map container port → localhost
+    # extraPortMappings:
+    #   - containerPort: 30000
+    #     hostPort: 8080
+    #     protocol: TCP
+
+    # ⭐ Add labels (helps in scheduling / debugging)
+    labels:
+      node-type: control-plane
+      env: dev
+
+  # Worker 1
+  - role: worker
+    image: kindest/node:v1.31.4@sha256:2cb39f7295fe7eafee0842b1052a599a4fb0f8bcf3f83d96c7f4864c357c6c30
+    labels:
+      node-type: worker
+      env: dev
+
+  # Worker 2
+  - role: worker
+    image: kindest/node:v1.31.4@sha256:2cb39f7295fe7eafee0842b1052a599a4fb0f8bcf3f83d96c7f4864c357c6c30
+    labels:
+      node-type: worker
+      env: dev
