@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-in-pod
+  labels:
+    app.kubernetes.io/name: environment-in-pod
+spec:
+  containers:
+    - name: env-in-pod-c
+      image: busybox:1.28
+      env:
+        - name: ENV_IN_POD
+          value: "This is an environment variable in a pod"
+      command: ["sh", "-c", "echo $ENV_IN_POD && sleep 3600"]
