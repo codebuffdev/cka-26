@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod4
+  labels: 
+    app: fe
+    k: v
+    env: dev
+  annotations:
+    description: We are spinning pod with labels 
+spec: 
+  containers:
+    - name: nginx-c
+      image: nginx
