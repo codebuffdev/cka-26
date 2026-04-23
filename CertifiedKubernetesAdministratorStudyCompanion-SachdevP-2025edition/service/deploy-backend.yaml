@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-py-deploy
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend-c
+          image: python:3.9-slim
+          command: ["python", "-m", "http.server", "8000"]
+          ports:
+            containerPort: 8000
