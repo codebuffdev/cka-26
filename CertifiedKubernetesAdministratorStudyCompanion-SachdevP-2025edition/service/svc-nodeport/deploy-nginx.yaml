@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: nginx-deploy 
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: nginx
+  template: 
+    metadata: 
+      labels: 
+        app: nginx
+    spec: 
+      containers: 
+        - name: nginx-c
+          image: nginx:latest 
+          ports: 
+            - containerPort: 80
+
+# get inside deploy :  kubectl exec -it deploy/nginx-deploy -- sh
+# curl localhost:80
+# Yet not accessible from outside 

@@ -1,0 +1,36 @@
+# kind-dev-cluster.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+name: dev
+
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.31.4@sha256:2cb39f7295fe7eafee0842b1052a599a4fb0f8bcf3f83d96c7f4864c357c6c30
+
+    extraPortMappings:
+      - containerPort: 30000
+        hostPort: 30000
+        protocol: TCP
+      - containerPort: 30001
+        hostPort: 30001
+        protocol: TCP
+      - containerPort: 30002
+        hostPort: 30002
+        protocol: TCP
+
+    labels:
+      node-type: control-plane
+      env: dev
+
+  - role: worker
+    image: kindest/node:v1.31.4@sha256:2cb39f7295fe7eafee0842b1052a599a4fb0f8bcf3f83d96c7f4864c357c6c30
+    labels:
+      node-type: worker
+      env: dev
+
+  - role: worker
+    image: kindest/node:v1.31.4@sha256:2cb39f7295fe7eafee0842b1052a599a4fb0f8bcf3f83d96c7f4864c357c6c30
+    labels:
+      node-type: worker
+      env: dev
