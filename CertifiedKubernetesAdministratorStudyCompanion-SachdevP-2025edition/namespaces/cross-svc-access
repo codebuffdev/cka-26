@@ -1,0 +1,17 @@
+1st:  To test spin a pod in the same name space & do a "wget -qO- http://svc-name"
+ kubectl run test -it --rm --image=busybox -n be -- sh
+
+ 2nd: 
+ spin another pod in another namespace 
+
+kubectl create namespace frontend
+kubectl run testpod --image=busybox -n frontend -it --rm  -- sh
+
+inside : 
+wget -qO- http://backend-svc
+wget: bad address 'backend-svc'
+
+wget -qO- http://backend-svc.be.svc.cluster.local
+Hello from Backend
+
+by passing the fqn of service -> svc.namespace.svc.cluster.local
