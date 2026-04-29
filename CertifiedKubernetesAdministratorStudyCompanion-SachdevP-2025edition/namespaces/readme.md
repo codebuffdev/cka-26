@@ -11,4 +11,4 @@ kubectl get all -n poc2
 
 ## diff obj in diff ns communication
 
-svcName.namespace.svc.cluster.local
+# svcName.namespace.svc.cluster.local

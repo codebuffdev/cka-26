@@ -1,7 +1,8 @@
-1st:  To test spin a pod in the same name space & do a "wget -qO- http://svc-name"
+# 1st:  
+To test spin a pod in the same name space & do a "wget -qO- http://svc-name"
  kubectl run test -it --rm --image=busybox -n be -- sh
 
- 2nd: 
+ # 2nd: 
  spin another pod in another namespace 
 
 kubectl create namespace frontend
